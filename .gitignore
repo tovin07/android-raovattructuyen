@@ -16,4 +16,5 @@ gen/
 local.properties
 
 # other files
-.dropbox
+*.dropbox
+*~
