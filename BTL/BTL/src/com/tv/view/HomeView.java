@@ -14,10 +14,11 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.tv.btl.R;
+import com.tv.listener.FragListener;
 
 @TargetApi(14)
 public class HomeView extends Activity {
-	
+	 Fragment globalFragment;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_ACTION_BAR);
@@ -35,7 +36,7 @@ public class HomeView extends Activity {
 		actionBar.addTab(tab_mypage);
 		
 		Tab tab_friends = actionBar.newTab();
-		tab_friends.setText("Bạn bè");
+		tab_friends.setText("Theo dõi");
 		tab_friends.setTabListener(new TabListener<Frag_friends>(this, "Tag friend",
 				Frag_friends.class));
 		actionBar.addTab(tab_friends);
@@ -77,11 +78,19 @@ public class HomeView extends Activity {
 			Intent i= new Intent(this, Account.class);
 			startActivity(i);
 			return true;
+		case R.id.home_option_refresh:
+			if(globalFragment instanceof Frag_feed){
+				System.out.println("aaa");
+				((Frag_feed) globalFragment).init();
+			}
+			return true;
 		}
+		
+			
 		return (super.onOptionsItemSelected(item));		
 	}
 	
-	public static class TabListener<T extends Fragment> implements
+	public  class TabListener<T extends Fragment> implements
 			ActionBar.TabListener {
 
 		Fragment myFragment = null;
@@ -110,6 +119,8 @@ public class HomeView extends Activity {
 				// If it exists, simply attach it in order to show it
 				ft.attach(myFragment);
 			}
+			globalFragment=myFragment;
+			
 		}
 
 		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
@@ -121,6 +132,7 @@ public class HomeView extends Activity {
 				// Detach the fragment, because another one is being attached
 				ft.detach(myFragment);
 			}
+			
 
 		}
 

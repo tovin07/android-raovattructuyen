@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <LinearLayout
+            android:id="@+id/friend_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/image_bg"
+            android:padding="3dip" >
+
+            <ImageView
+                android:id="@+id/friend_avatar"
+                android:layout_width="60dip"
+                android:layout_height="45dip"
+                android:src="@drawable/noavatar" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/friend_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/friend_title"
+            android:layout_toRightOf="@+id/friend_title"
+            android:text="Tên bạn"
+            android:textColor="#040404"
+            android:textSize="15dip"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/friend_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/friend_username"
+            android:layout_marginTop="1dip"
+            android:layout_toRightOf="@+id/friend_title"
+            android:text="Email"
+            android:textColor="#343434"
+            android:textSize="10dip" />
+
+        <TextView
+            android:id="@+id/friend_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/friend_title"
+            android:layout_alignLeft="@+id/friend_email"
+            android:gravity="right"
+            android:text="Số điện thoại"
+            android:textColor="#343434"
+            android:textSize="10dip" />
+
+        <Button
+            android:id="@+id/friend_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/friend_email"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="Bỏ kết bạn"
+            android:textSize="10dip" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="310dp" >
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="310dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/friend_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Xem thêm sản phẩm" />
+
+</LinearLayout>

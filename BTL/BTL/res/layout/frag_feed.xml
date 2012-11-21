@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Xêm thêm" />
+        android:text="Xêm thêm" 
+        android:onClick="viewMore"/>
 
 </LinearLayout>

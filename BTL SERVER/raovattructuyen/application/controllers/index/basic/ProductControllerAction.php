@@ -130,6 +130,31 @@ class ProductControllerAction {
         echo (json_encode($respone));
         
     }
+    
+    public function loadMorePage(){
+        $respone =array();
+        $_page=$_GET['page'];
+        $user_id=$_GET['user_id'];
+        $data=ProductModel::getAllProductById($user_id,$page, 10);
+        $respone['products']= $data['results'];
+        $totalPage= $data['totalRows']/10;
+        if ($_page >= $totalPage)
+            $_page= 0;
+        $respone['page']= $_page;
+        echo (json_encode($respone));
+    }
+    
+    public function loadMoreFeed(){
+        $respone =array();
+        $_page=$_GET['page'];
+        $data=ProductModel::getAllProduct($_page, 10);
+        $respone['products']= $data['results'];
+        $totalPage= $data['totalRows']/10;
+        if ($_page >= $totalPage)
+            $_page= 0;
+        $respone['page']= $_page;
+        echo (json_encode($respone));
+    }
 
 }
 

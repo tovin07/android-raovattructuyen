@@ -30,7 +30,7 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 	public static final int FEED=2;
 	public static final int MYPAGE=3;
 	public static final int MORE_PAGE=4;
-	
+	public static final int MORE_FEED=5;
 
 	private ProductListener context;
 	private ProductController pController ;
@@ -55,10 +55,11 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 		case MYPAGE:
 			json=pController.getMyPage(params[0]);
 			break;
-		case MORE_PAGE:
+		case MORE_FEED:
 			int page =((BaseApplication)((Frag_feed)context).getActivity().getApplication()).getFeedPage();
 			json=pController.moreFeed(page+1);
 			break;
+		
 		default:
 			
 			break;
@@ -77,6 +78,8 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 		case MYPAGE:
 			MyPage(json);
 			break;
+		case MORE_FEED:
+			MoreFeed(json);
 		default:
 			break;
 		}
@@ -108,6 +111,7 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 			pr.setDate(s.getString("post_publicationDate"));
 			pr.setDes(s.getString("product_description"));
 			pr.setPid(Integer.parseInt(s.getString("product_id")));
+			pr.setUid(Integer.parseInt(s.getString("user_id")));
 			String url ="http://10.0.2.2:85/raovattructuyen/"+s.getString("product_avatar");
 			pr.setUrl(url);
 			String name =username.getString(i);
@@ -118,8 +122,11 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		if()
+		BaseApplication bs = (BaseApplication)((((Fragment)context).getActivity()).getApplication());
+		if(maxFeed!=bs.getMaxFeed()){
 		context.reload(productList);
+		bs.setMaxFeed(maxFeed);
+		}
 		
 	}
 	
@@ -136,6 +143,7 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 			pr.setDate(s.getString("post_publicationDate"));
 			pr.setDes(s.getString("product_description"));
 			pr.setPid(Integer.parseInt(s.getString("product_id")));
+			pr.setUid(Integer.parseInt(s.getString("user_id")));
 			String url ="http://10.0.2.2:85/raovattructuyen/"+s.getString("product_avatar");
 			pr.setUrl(url);
 			productList.add(pr);
@@ -154,6 +162,10 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void MoreFeed(JSONObject json){
 		
 	}
 }

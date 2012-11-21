@@ -84,12 +84,14 @@ public class UserController {
 		JSONObject uif= handler.getJsonFromUrlByGet(url, params);
 		return uif;
 	}
-			
-	public JSONObject getMyPage(Product product){
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("user_id",product.getUid()+""));
-		String url=ServerConfig.MYPAGE;
-		JSONObject pmp= handler.getJsonFromUrlByGet(url, params);
-		return pmp;
+	
+	public JSONObject checkFolloew(){
+		String url = ServerConfig.CHECKFOLLOW;
+		return null;
+	}
+	
+	public JSONObject addFollow(){
+		String url = ServerConfig.ADDFOLLOW;
+		return null;
 	}
 }

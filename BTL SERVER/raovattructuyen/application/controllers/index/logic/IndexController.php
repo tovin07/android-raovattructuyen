@@ -22,6 +22,9 @@ switch ($manager) {
     case "comment":
         require 'Commentcontroller.php';
         break;
+    case "follow":
+        require 'Followusercontroller.php';
+        break;
     default:
         break;
 }

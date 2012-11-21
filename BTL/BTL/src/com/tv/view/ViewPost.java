@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -23,13 +23,12 @@ import com.tv.btl.BaseApplication;
 import com.tv.btl.R;
 import com.tv.listener.CommentListener;
 import com.tv.model.Comment;
-import com.tv.model.Product;
 import com.tv.net.DownloadImage;
 import com.tv.task.CommentTask;
-import com.tv.view.Frag_feed.Holder;
 import com.tv.view.dialog.PhoneDialog;
 
 public class ViewPost extends Activity implements CommentListener {
+	private int user_id;
 	private int product_id;
 	private String username = "";
 	private String productname = "";
@@ -42,6 +41,7 @@ public class ViewPost extends Activity implements CommentListener {
 	ListView list;
 	ImageView image;
 	EditText comment;
+	Button addfriend;
 
 	List<Comment> model = new ArrayList<Comment>();
 	CommentArray adapter = null;
@@ -59,20 +59,25 @@ public class ViewPost extends Activity implements CommentListener {
 		image = (ImageView) findViewById(R.id.vp_image);
 		comment = (EditText) findViewById(R.id.vp_addcm);
 		list = (ListView) findViewById(R.id.vp_listcm);
-
-		product_id = i.getIntExtra(Frag_feed.PID, 1);
+		addfriend = (Button) findViewById(R.id.vp_follow);
+		
+		user_id = i.getIntExtra(Frag_feed.UID, 0);
+		product_id = i.getIntExtra(Frag_feed.PID, 0);
 		productname = i.getStringExtra(Frag_feed.PNAME);
 		username = i.getStringExtra(Frag_feed.UNAME);
 		publicdate = i.getStringExtra(Frag_feed.PUBLICDATE);
 		description = i.getStringExtra(Frag_feed.DESCRIPTION);
 		imageurl = i.getStringExtra(Frag_feed.URL);
 		System.out.println("pid : " + product_id);
-
+		
 		pname.setText(productname);
 		uname.setText(username);
 		date.setText(publicdate);
 		des.setText(description);
 
+		if (user_id==((BaseApplication)getApplication()).getID())
+			addfriend.setVisibility(android.view.View.INVISIBLE);
+		
 		DownloadImage download = new DownloadImage(image);
 		download.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, imageurl);
 		
@@ -166,6 +171,10 @@ public class ViewPost extends Activity implements CommentListener {
 	public void saveComment() {
 		System.out.println("comment thanh cong!");
 
+	}
+	
+	public void addFriend(){
+		
 	}
 
 }

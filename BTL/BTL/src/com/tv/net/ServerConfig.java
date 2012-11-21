@@ -9,6 +9,7 @@ public class ServerConfig {
 	public static final String NEW_PRODUCT = DOMAIN+"?t=product&a=newProduct&";
 	public static final String FEED=DOMAIN+"?t=product&a=getfeed";
 	public static final String MY_PAGE = DOMAIN+"?t=product&a=getpage&";
+	public static final String MORE_FEED=DOMAIN+"?t=product&a=loadMoreFeed&";
 	
 /**
  * 	user url controller	
@@ -17,6 +18,8 @@ public class ServerConfig {
 	public static final String LOGIN=DOMAIN+"?t=user&a=checklogin&";
 	public static final String INFO=DOMAIN+"?t=user&a=userinfo&";
 	public static final String MYPAGE = DOMAIN+"?t=product&a=getpage&";
+	public static final String CHECKFOLLOW = DOMAIN;
+	public static final String ADDFOLLOW = DOMAIN+"t=follow&a=followuser&";
 
 /**
  * 	comment url controller	

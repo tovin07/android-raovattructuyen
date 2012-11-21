@@ -27,7 +27,8 @@ public class UserTask extends AsyncTask<User, String, JSONObject>{
 	public static final int REGISTER=1;
 	public static final int LOGIN=2;
 	public static final int INFO=3;		
-	public static final int MYPAGE=4;
+	public static final int CHECKFOLLOW=4;
+	public static final int ADDFOLLOW=5;
 	
 	private UserListener context;
 	private UserController uController ;
@@ -54,6 +55,10 @@ public class UserTask extends AsyncTask<User, String, JSONObject>{
 		case INFO:
 			json=uController.getUserInfo(params[0]);
 			break;
+		case CHECKFOLLOW:
+			break;
+		case ADDFOLLOW:
+			break;
 		default:
 			break;
 		}
@@ -78,6 +83,12 @@ public class UserTask extends AsyncTask<User, String, JSONObject>{
 			break;
 		case INFO:
 			getUserInfo(json);
+			break;
+		case CHECKFOLLOW:
+			checkFollow(json);
+			break;
+		case ADDFOLLOW:
+			addFollow(json);
 			break;
 		default:
 			break;
@@ -178,4 +189,7 @@ public class UserTask extends AsyncTask<User, String, JSONObject>{
 			
 		}
 	}
+	
+	private void checkFollow(JSONObject json){}
+	private void addFollow(JSONObject json){}
 }

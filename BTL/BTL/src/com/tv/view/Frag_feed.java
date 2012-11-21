@@ -12,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.tv.btl.BaseApplication;
 import com.tv.btl.R;
+import com.tv.listener.FragListener;
 import com.tv.listener.ProductListener;
 import com.tv.model.Product;
 import com.tv.net.DownloadImage;
@@ -25,6 +28,7 @@ import com.tv.net.JsonHandler;
 import com.tv.task.ProductTask;
 
 public class Frag_feed extends ListFragment implements ProductListener {
+	public static final String UID = "uid";
 	public static final String PID = "pid";
 	public static final String PNAME = "pname";
 	public static final String UNAME = "uname";
@@ -36,17 +40,31 @@ public class Frag_feed extends ListFragment implements ProductListener {
 	List<Product> model = new ArrayList<Product>();
 	FragmentArray adapter = null;
 	Product product = null;
-
+	Button vmore;
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		FragmentView = inflater.inflate(R.layout.frag_feed, container, false);
+		
 		return FragmentView;
 	}
+	
 
 	public void onActivityCreated(Bundle Save) {
 		super.onActivityCreated(Save);
 		adapter = new FragmentArray();
 		init();
+		Button vmore =(Button) FragmentView.findViewById(R.id.frag_feed_more);
+		vmore.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				viewMore();
+			}
+		});
+	}
+	
+	public void viewMore(){
+		BaseApplication bs =(BaseApplication) getActivity().getApplication();
+		
 	}
 
 	public void onStart() {
@@ -128,6 +146,7 @@ public class Frag_feed extends ListFragment implements ProductListener {
 	public void onListItemClick(ListView list, View view, int position, long id) {
 		Intent i = new Intent(getActivity(), ViewPost.class);
 		product = model.get(position);
+		i.putExtra(Frag_feed.UID, product.getUid());
 		i.putExtra(PID, product.getPid());
 		i.putExtra(PNAME, product.getPname());
 		i.putExtra(UNAME, product.getUname());
@@ -144,7 +163,7 @@ public class Frag_feed extends ListFragment implements ProductListener {
 	}
 
 	public void init() {
-		System.out.println("init");
+		
 		setListAdapter(adapter);
 		ProductTask t = new ProductTask(ProductTask.FEED, this);
 		Product f = new Product();
@@ -165,5 +184,6 @@ public class Frag_feed extends ListFragment implements ProductListener {
 		adapter.notifyDataSetChanged();
 		System.out.println("count" + adapter.getCount());
 	}
-
+	
+	
 }

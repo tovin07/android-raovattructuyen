@@ -19,10 +19,8 @@ import com.tv.btl.BaseApplication;
 import com.tv.btl.R;
 import com.tv.listener.ProductListener;
 import com.tv.model.Product;
-import com.tv.net.DownloadImage;
 import com.tv.net.DownloadProduct;
 import com.tv.task.ProductTask;
-import com.tv.view.Frag_feed.Holder;
 
 public class Frag_mypage extends ListFragment implements ProductListener{
 	private View FragmentView = null;
@@ -67,6 +65,7 @@ public class Frag_mypage extends ListFragment implements ProductListener{
 	public void onListItemClick(ListView list, View view, int position, long id) {
 		Intent i = new Intent(getActivity(), ViewPost.class);
 		product = model.get(position);
+		i.putExtra(Frag_feed.UID, product.getUid());
 		i.putExtra(Frag_feed.PID, product.getPid());
 		i.putExtra(Frag_feed.PNAME, product.getPname());
 		i.putExtra(Frag_feed.UNAME, ((BaseApplication)getActivity().getApplication()).getUsername());
@@ -142,7 +141,6 @@ public class Frag_mypage extends ListFragment implements ProductListener{
 		setListAdapter(adapter);
 		ProductTask t= new ProductTask(ProductTask.MYPAGE, this);
 		Product p = new Product();
-//		int uid = 44;
 		int uid=((BaseApplication)getActivity().getApplication()).getID();
 		p.setUid(uid);
 		t.execute(p);

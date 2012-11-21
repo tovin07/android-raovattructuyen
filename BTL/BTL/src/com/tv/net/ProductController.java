@@ -43,9 +43,10 @@ public class ProductController {
 	}
 	
 	public JSONObject moreFeed(int page){
-		String url=ServerConfig.FEED;
+		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("page",page+"" ));
+		String url=ServerConfig.MORE_FEED;
 		return handler.getJsonFromUrlByGet(url, params);
 	}
 	

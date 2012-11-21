@@ -28,6 +28,8 @@ require (CLASS_PATH . "/Comment.php");
 require (CLASSLOGIC_PATH . "/CommentModel.php");
 require (CLASS_PATH . "/Followpost.php");
 require (CLASSLOGIC_PATH . "/FollowpostModel.php");
+require (CLASS_PATH . "/Followuser.php");
+require (CLASSLOGIC_PATH . "/FollowuserModel.php");
 require (CLASS_PATH . "/Post.php");
 require (CLASSLOGIC_PATH . "/PostModel.php");
 require (CLASS_PATH . "/Productimage.php");

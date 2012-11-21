@@ -21,6 +21,12 @@ switch ($action) {
     case "getpage":
         $productControllerAction->getPage();
         break;
+    case "loadMoreFeed":
+        $productControllerAction->loadMoreFeed();
+        break;
+    case "loadMorePage":
+        $productControllerAction->loadMorePage();
+        break;
     default :
        
         break;
