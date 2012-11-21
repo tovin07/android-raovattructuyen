@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <TextView
+        android:id="@+id/rowcm_uname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên người"
+        android:textColor="#040404"
+        android:textSize="12dip"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/rowcm_content"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/rowcm_uname"
+        android:layout_alignRight="@+id/rowcm_date"
+        android:layout_below="@+id/rowcm_uname"
+        android:layout_marginTop="1dip"
+        android:text="Bình loạn"
+        android:textColor="#343434"
+        android:textSize="10dip" />
+
+    <TextView
+        android:id="@+id/rowcm_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rowcm_uname"
+        android:gravity="right"
+        android:text="16-11-2011"
+        android:textColor="#10bcc9"
+        android:textSize="10dip"
+        android:textStyle="bold" />
+
+</RelativeLayout>

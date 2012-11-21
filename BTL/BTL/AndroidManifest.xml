@@ -1,0 +1,62 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tv.btl"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:maxSdkVersion="16"
+        android:minSdkVersion="13"
+        android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera"></uses-feature> 
+
+    <application
+        android:name=".BaseApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light"
+        >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tv.test.HandleActivity" >
+        </activity>
+        <activity android:name="com.tv.test.DownloadQueueActivity" >
+        </activity>
+        <activity android:name="com.tv.test.TestServiceAcitivity" >
+        </activity>
+
+        <service android:name="com.tv.test.TestService" >
+        </service>
+
+        <activity android:name="com.tv.test.TestServiceAcitivity2" >
+        </activity>
+        <activity android:name="com.tv.provider.TestLoader" >
+        </activity>
+
+       
+
+        <activity android:name="com.tv.view.LoginActivity" >
+        </activity>
+        <activity android:name="com.tv.view.HomeView" >
+        </activity>
+        <activity android:name="com.tv.camera.CameraTest" >
+        </activity>
+        <activity android:name="PostProduct"></activity>
+        <activity android:name="com.tv.view.ViewPost"></activity> 
+        <activity android:name="com.tv.view.NewPost"></activity>
+        <activity android:name="com.tv.camera.TestFragment"></activity>
+        <activity android:name="com.tv.downloadimage.TestDownLoadImage"></activity>
+        <activity android:name="com.tv.view.Account"></activity>
+    </application>
+
+</manifest>

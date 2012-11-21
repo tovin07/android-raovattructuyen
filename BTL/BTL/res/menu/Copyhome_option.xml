@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/home_option_setting"
+        android:icon="@drawable/ic_settings"
+        android:showAsAction="always"
+        android:title="Settings">
+        <menu>
+            <item 
+                android:id="@+id/home_option_post"
+                android:title="Post"/>
+            <item
+                android:id="@+id/home_option_acc"
+                android:title="Account"/>
+            <item
+                android:id="@+id/home_option_about"
+                android:title="About"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/home_option_notification"
+        android:icon="@drawable/ic_notification"
+        android:showAsAction="always"
+        android:title="Notifications"/>
+    <item
+        android:id="@+id/home_option_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_search"
+        android:showAsAction="always|collapseActionView"
+        android:title="Search"/>
+
+</menu>

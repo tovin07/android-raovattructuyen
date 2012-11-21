@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+	
+    <EditText
+        android:id="@+id/tfUsername"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Tên đăng nhâp (*)" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/tfPassword"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Mật khẩu (*)"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/tfCPass"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Xác định mật khẩu (*)"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/tfName"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfCPass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Tên đầy đủ (*)" />
+
+    <EditText
+        android:id="@+id/tfEmail"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfName"
+       android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Email (*)"
+        android:inputType="textPersonName" />
+    
+    <EditText 
+        android:id="@+id/tfPhone"
+         android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfEmail"
+       android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Điện thoại (*)"
+        android:inputType="phone" />
+    
+    <EditText 
+        android:id="@+id/tfTaikhoan"
+         android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfPhone"
+       android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Tài khoản (*)"
+         />
+    
+    <EditText 
+        android:id="@+id/tfAddress"
+         android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tfTaikhoan"
+       android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:ems="7"
+        android:hint="Địa chỉ (*)"
+         />
+        
+    
+
+	
+
+</RelativeLayout>

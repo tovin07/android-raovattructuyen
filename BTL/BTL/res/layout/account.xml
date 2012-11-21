@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   
+    <ImageView
+        android:id="@+id/account_avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+     	
+        android:onClick="upAvatar"
+        />
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginLeft="3dp"
+	    >
+	 <TextView 
+	     android:text="Tên đầy đủ"
+	     android:layout_width="100dp"
+	     android:gravity="left"
+	     android:layout_height="wrap_content"
+	     />
+    <EditText
+        android:id="@+id/account_fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:ems="10"
+        android:singleLine="true" >
+
+        <requestFocus />
+    </EditText>
+	</LinearLayout>	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginLeft="3dp"
+	    >
+     <TextView 
+	     android:text="Email"
+	     android:layout_width="100dp"
+	     android:gravity="left"
+	     android:layout_height="wrap_content"
+	     />
+    <EditText
+        android:id="@+id/account_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:editable="false"
+        android:singleLine="true" />
+    
+	</LinearLayout>	
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginLeft="3dp"
+	    >
+     <TextView 
+	     android:text="Điện thoại"
+	     android:layout_width="100dp"
+	     android:gravity="left"
+	     android:layout_height="wrap_content"
+	     />
+    <EditText
+        android:id="@+id/account_tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:ems="10"
+        android:singleLine="true" />
+	</LinearLayout>	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginLeft="3dp"
+	    >
+    <TextView 
+	     android:text="Địa chỉ"
+	     android:layout_width="100dp"
+	     android:gravity="left"
+	     android:layout_height="wrap_content"
+	     />
+    <EditText
+        android:id="@+id/account_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:editable="false"
+        android:singleLine="true" />
+	</LinearLayout>		<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginLeft="3dp"
+	    >
+     <TextView 
+	     android:text="Tài khoản"
+	     android:layout_width="100dp"
+	     android:gravity="left"
+	     android:layout_height="wrap_content"
+	     />
+    <EditText
+        android:id="@+id/account_taikhoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:editable="false"
+        android:singleLine="true" />
+	</LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        >
+
+        	<Button
+        	    android:id="@+id/account_editinfo"
+        	    android:layout_width="152dp"
+        	    android:layout_height="60dp"
+        	   
+        	    android:onClick="editInfo"
+        	    android:text="Chỉnh sửa thông tin" />
+
+        	<Button
+        	    android:id="@+id/account_editpass"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="60dp"
+        	    android:onClick="editPassword"
+        	    android:text="Thay đổi mật khẩu" />
+        
+    </LinearLayout>
+   </LinearLayout>
