@@ -53,7 +53,7 @@ public class Frag_feed extends ListFragment implements ProductListener {
 		super.onActivityCreated(Save);
 		adapter = new FragmentArray();
 		init();
-		Button vmore =(Button) FragmentView.findViewById(R.id.frag_feed_more);
+		vmore =(Button) FragmentView.findViewById(R.id.frag_feed_more);
 		vmore.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -63,7 +63,13 @@ public class Frag_feed extends ListFragment implements ProductListener {
 	}
 	
 	public void viewMore(){
+		
 		BaseApplication bs =(BaseApplication) getActivity().getApplication();
+		System.out.println(bs.getFeedPage());
+		if(bs.getFeedPage()!=0){
+			ProductTask t = new ProductTask(ProductTask.MORE_FEED, this);
+			t.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Product());
+		}
 		
 	}
 
@@ -184,6 +190,16 @@ public class Frag_feed extends ListFragment implements ProductListener {
 		adapter.notifyDataSetChanged();
 		System.out.println("count" + adapter.getCount());
 	}
+
+
+	public void loadMore(List<Product> params) {
+		for(int i=0;i<params.size();i++){
+			model.add(params.get(i));
+		}
+		adapter.notifyDataSetChanged();
+		
+	}
+	
 	
 	
 }

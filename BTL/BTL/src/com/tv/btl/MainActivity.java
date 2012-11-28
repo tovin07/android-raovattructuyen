@@ -9,7 +9,6 @@ import android.view.View;
 import com.tv.camera.CameraTest;
 import com.tv.camera.TestFragment;
 import com.tv.downloadimage.TestDownLoadImage;
-import com.tv.view.LoginActivity;
 
 public class MainActivity extends Activity {
 

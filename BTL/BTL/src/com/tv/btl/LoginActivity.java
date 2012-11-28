@@ -1,6 +1,7 @@
-package com.tv.view;
+package com.tv.btl;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,9 +16,10 @@ import com.tv.listener.UserListener;
 import com.tv.model.User;
 import com.tv.net.UserController;
 import com.tv.task.UserTask;
+import com.tv.view.HomeView;
 import com.tv.view.dialog.RegisterDialog;
 
-public class LoginActivity extends FragmentActivity implements UserListener {
+public class LoginActivity extends Activity implements UserListener {
 
 	private Button loginOk;
 	private Button loginRegister;
@@ -87,4 +89,8 @@ public class LoginActivity extends FragmentActivity implements UserListener {
 		
 	}
 
+	public void viewInfo(User user) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -39,12 +39,12 @@ class UserModel {
     }
     public static function getIDByUsername($user_username){
         $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-        $sql = "SELECT user_avatar FROM tbl_user WHERE user_username= ?";
+        $sql = "SELECT user_id FROM tbl_user WHERE user_username= ?";
         $st = $conn->prepare($sql);
         $st->bindValue(1, $user_username);
         $st->execute();
         $row = $st->fetch();
-        $result=$row['user_avatar'];
+        $result=$row['user_id'];
         $conn = null;
         return $result;
     }

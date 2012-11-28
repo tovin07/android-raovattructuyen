@@ -55,7 +55,7 @@ public class UserController {
 	public JSONObject registerUser(User user){
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("user_username",user.getUername()));
+		params.add(new BasicNameValuePair("user_username",user.getUsername()));
 		params.add(new BasicNameValuePair("user_password", user.getPassword()));
 		params.add(new BasicNameValuePair("user_email", user.getEmail()));
 		params.add(new BasicNameValuePair("user_fullname", user.getFullname()));
@@ -69,7 +69,7 @@ public class UserController {
 	
 	public JSONObject loginUser(User user){
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("user_username", user.getUername()));
+		params.add(new BasicNameValuePair("user_username", user.getUsername()));
 		params.add(new BasicNameValuePair("user_password", user.getPassword()));
 		String url=ServerConfig.LOGIN;
 		JSONObject us =handler.getJsonFromUrlByPost(url, params);
@@ -85,13 +85,4 @@ public class UserController {
 		return uif;
 	}
 	
-	public JSONObject checkFolloew(){
-		String url = ServerConfig.CHECKFOLLOW;
-		return null;
-	}
-	
-	public JSONObject addFollow(){
-		String url = ServerConfig.ADDFOLLOW;
-		return null;
-	}
 }

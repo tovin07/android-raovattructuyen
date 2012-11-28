@@ -83,6 +83,13 @@ public class HomeView extends Activity {
 				System.out.println("aaa");
 				((Frag_feed) globalFragment).init();
 			}
+			else if(globalFragment instanceof Frag_mypage)
+			{
+				((Frag_mypage) globalFragment).init();
+			}
+			else if(globalFragment instanceof Frag_friends){
+				((Frag_friends) globalFragment).init();
+			}
 			return true;
 		}
 		

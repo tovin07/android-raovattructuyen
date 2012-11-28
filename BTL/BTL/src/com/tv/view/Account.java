@@ -120,8 +120,7 @@ public class Account extends Activity implements UserListener {
 		Bitmap b = BitmapFactory.decodeFile(uri);
 		img.setImageBitmap(b);
 		Ulti.scaleImage(img, 350);
-		CameraTask t = new CameraTask();
-		t.execute(uri);
+	
 
 	}
 
@@ -151,6 +150,11 @@ public class Account extends Activity implements UserListener {
 
 	public void getAvatarInfo() {
 		
+		
+	}
+
+	public void viewInfo(User user) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.tv.btl.BaseApplication;
 import com.tv.btl.R;
 import com.tv.listener.ProductListener;
 import com.tv.model.Product;
+import com.tv.model.User;
 import com.tv.net.DownloadProduct;
 import com.tv.task.ProductTask;
 
@@ -27,7 +29,7 @@ public class Frag_mypage extends ListFragment implements ProductListener{
 	List<Product> model = new ArrayList<Product>();
 	FragmentArray adapter =null;
 	Product product = null;
-
+	Button vmore;
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		FragmentView = inflater.inflate(R.layout.frag_mypage, container, false);
@@ -39,7 +41,25 @@ public class Frag_mypage extends ListFragment implements ProductListener{
 		super.onActivityCreated(Save);
 		adapter = new FragmentArray();
 		init();
-		System.out.println("mypage: activty created");
+		vmore =(Button) FragmentView.findViewById(R.id.frag_mypage_more);
+		vmore.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				viewMore();
+			}
+		});
+	}
+	
+	public void viewMore(){
+		BaseApplication bs =(BaseApplication) getActivity().getApplication();
+		System.out.println(bs.getPage_page());
+		if(bs.getPage_page()!=0){
+			int id =bs.getID();
+			Product pr = new Product();
+			pr.setUid(id);
+			ProductTask t = new ProductTask(ProductTask.MORE_PAGE, this);
+			t.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,pr);
+		}
 	}
 
 	public void onStart() {
@@ -160,6 +180,14 @@ public class Frag_mypage extends ListFragment implements ProductListener{
 		}
 		adapter.notifyDataSetChanged();
 		System.out.println("count"+adapter.getCount());
+	}
+
+	public void loadMore(List<Product> params) {
+		for(int i=0;i<params.size();i++){
+			model.add(params.get(i));
+		}
+		adapter.notifyDataSetChanged();
+		
 	}
 	
 }

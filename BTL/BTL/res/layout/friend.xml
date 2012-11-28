@@ -59,7 +59,7 @@
             android:text="Số điện thoại"
             android:textColor="#343434"
             android:textSize="10dip" />
-
+
         <Button
             android:id="@+id/friend_remove"
             android:layout_width="wrap_content"
@@ -67,19 +67,19 @@
             android:layout_alignBottom="@+id/friend_email"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="Bỏ kết bạn"
+            android:text="Bỏ theo dõi"
             android:textSize="10dip" />
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="310dp" >
+        android:layout_height="320dp" >
 
         <ListView
-            android:id="@android:id/list"
+            android:id="@+id/friend_list"
             android:layout_width="match_parent"
-            android:layout_height="310dp" />
+            android:layout_height="320dp" />
     </LinearLayout>
 
     <Button
@@ -87,6 +87,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Xem thêm sản phẩm" />
+        android:text="Xem thêm sản phẩm" 
+        android:onClick="viewMore"
+        />
 
 </LinearLayout>

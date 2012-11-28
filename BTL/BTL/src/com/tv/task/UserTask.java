@@ -13,66 +13,69 @@ import com.tv.model.User;
 import com.tv.net.UserController;
 
 /**
- * Lớp thực hiện nhiệm vụ chạy ngầm , yêu cầu lớp Controller tương tác với server
+ * Lớp thực hiện nhiệm vụ chạy ngầm , yêu cầu lớp Controller tương tác với
+ * server
+ * 
  * @author misugi_jun91
- *
+ * 
  */
-public class UserTask extends AsyncTask<User, String, JSONObject>{
-	
-	
+public class UserTask extends AsyncTask<User, String, JSONObject> {
+
 	private int type;
 	private User user;
+
+	public static final int CHECK_USERNAME = 0;
+	public static final int REGISTER = 1;
+	public static final int LOGIN = 2;
+	public static final int INFO = 3;
+	public static final int CHECKFOLLOW = 4;
+	public static final int ADDFOLLOW = 5;
+	public static final int UNFOLLOW = 6;
+	public static final int VIEW_INFO=7;
 	
-	public static final int CHECK_USERNAME=0;
-	public static final int REGISTER=1;
-	public static final int LOGIN=2;
-	public static final int INFO=3;		
-	public static final int CHECKFOLLOW=4;
-	public static final int ADDFOLLOW=5;
-	
+
 	private UserListener context;
-	private UserController uController ;
-	
-	public UserTask(int mType,UserListener mActivity){
-		this.type=mType;
-		this.context=mActivity;
+	private UserController uController;
+
+	public UserTask(int mType, UserListener mActivity) {
+		this.type = mType;
+		this.context = mActivity;
 		uController = new UserController();
 	}
+
 	/**
 	 * Do task in new thread not main thread
 	 */
 	@Override
 	protected JSONObject doInBackground(User... params) {
-		
-		JSONObject json=null;
+
+		JSONObject json = null;
 		switch (type) {
 		case REGISTER:
-			json=uController.registerUser(params[0]);
+			json = uController.registerUser(params[0]);
 			break;
 		case LOGIN:
-			json=uController.loginUser(params[0]);
+			json = uController.loginUser(params[0]);
 			break;
 		case INFO:
+			json = uController.getUserInfo(params[0]);
+			break;
+		case VIEW_INFO:
 			json=uController.getUserInfo(params[0]);
-			break;
-		case CHECKFOLLOW:
-			break;
-		case ADDFOLLOW:
 			break;
 		default:
 			break;
 		}
 		return json;
-//		int resutl=uController.checkUsername(params[0]);
-//		System.out.println(resutl);
-//		return Integer.valueOf(resutl);
+		// int resutl=uController.checkUsername(params[0]);
+		// System.out.println(resutl);
+		// return Integer.valueOf(resutl);
 	}
-	
-	
+
 	/**
 	 * Go in to main thread after do the thread above
 	 */
-	protected void onPostExecute(JSONObject json){
+	protected void onPostExecute(JSONObject json) {
 		switch (type) {
 		case REGISTER:
 			System.out.println("nhan duoc goi tin");
@@ -84,99 +87,95 @@ public class UserTask extends AsyncTask<User, String, JSONObject>{
 		case INFO:
 			getUserInfo(json);
 			break;
-		case CHECKFOLLOW:
-			checkFollow(json);
-			break;
-		case ADDFOLLOW:
-			addFollow(json);
+		case VIEW_INFO:
+			viewInfo(json);
 			break;
 		default:
 			break;
 		}
-		
+
 	}
-	
-//	private void checkUsername(Integer value){
-//		switch (value) {
-//		case 0:
-//			Toast.makeText((Activity)context, "Khong the dang ky tai khoan nay", Toast.LENGTH_SHORT).show();
-//			
-//			break;
-//
-//		default:
-//			Toast.makeText((Activity)context, "Co the dang ky tai khoan nay", Toast.LENGTH_SHORT).show();
-//			break;
-//		}
-//	}
-	
-	private void register(JSONObject json){
-		int result=0;
-		try{
-			//TODO đăng kí tài khoản thành công tại đây
-			String register=json.getString("register");
-			if(Integer.parseInt(register)==1){
+
+	// private void checkUsername(Integer value){
+	// switch (value) {
+	// case 0:
+	// Toast.makeText((Activity)context, "Khong the dang ky tai khoan nay",
+	// Toast.LENGTH_SHORT).show();
+	//
+	// break;
+	//
+	// default:
+	// Toast.makeText((Activity)context, "Co the dang ky tai khoan nay",
+	// Toast.LENGTH_SHORT).show();
+	// break;
+	// }
+	// }
+
+	private void register(JSONObject json) {
+		int result = 0;
+		try {
+			// TODO đăng kí tài khoản thành công tại đây
+			String register = json.getString("register");
+			if (Integer.parseInt(register) == 1) {
 				context.alertMessage("Đăng kí tài khoản thành công");
-				String uid =json.getString("uid");
-				((BaseApplication)((Activity)context).getApplication()).setID(Integer.parseInt(uid));
-				System.out.println("uid"+((BaseApplication)((Activity)context).getApplication()).getID());
-				
-			}
-			else
-			{
-				String checkuser=json.getString("checkusername");
-				if(Integer.parseInt(checkuser)==0)
-				{
+				String uid = json.getString("uid");
+				System.out.println("uid la "+uid);
+				((BaseApplication) ((Activity) context).getApplication())
+						.setID(Integer.parseInt(uid));
+				System.out.println("uid"
+						+ ((BaseApplication) ((Activity) context)
+								.getApplication()).getID());
+
+			} else {
+				String checkuser = json.getString("checkusername");
+				if (Integer.parseInt(checkuser) == 0) {
 					context.alertMessage("Tên đăng nhập đã được sử dụng");
 				}
 			}
-			
-		}
-		catch(JSONException e){
+
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	private void login(JSONObject json)
-	{
-		try{
+
+	private void login(JSONObject json) {
+		try {
 			String uid = json.getString("uid");
-			int user_id=Integer.parseInt(uid);
-			if(user_id==-1){
+			int user_id = Integer.parseInt(uid);
+			if (user_id == -1) {
 				context.alertMessage("Kiểm tra tài khoản và mật khẩu");
-			}
-			else
-			{
-				String displayName=json.getString("username");
-				String url=json.getString("avatar");
-				BaseApplication bs=(BaseApplication)((Activity)context).getApplication();
+			} else {
+				String displayName = json.getString("username");
+				String url = json.getString("avatar");
+				BaseApplication bs = (BaseApplication) ((Activity) context)
+						.getApplication();
 				bs.setID(Integer.parseInt(uid));
 				String username = json.getString("username");
 				bs.setUsername(username);
-				String urlavatar =json.getString("avatar");
+				String urlavatar = json.getString("avatar");
 				bs.setUrlAvatar(urlavatar);
 				context.loginComplete();
 			}
-				
-		}
-		catch(JSONException e){
-			
+
+		} catch (JSONException e) {
+
 		}
 	}
-	
+
 	/*
-	 *   $respone['fullname']=$user->getUser_fullname();
-        $respone['email']=$user->getUser_email();
-        $respone['phone']=$user->getUser_tel();
-        $respone['address']=$user->getUser_address();
-        $respone['taikhoan']=$user->getUser_taikhoan();
+	 * $respone['fullname']=$user->getUser_fullname();
+	 * $respone['email']=$user->getUser_email();
+	 * $respone['phone']=$user->getUser_tel();
+	 * $respone['address']=$user->getUser_address();
+	 * $respone['taikhoan']=$user->getUser_taikhoan();
 	 */
-	private void getUserInfo(JSONObject json){
-		try{
-			String fullname=json.getString("fullname");
-			String email=json.getString("email");
-			String phone=json.getString("phone");
-			String address=json.getString("address");
-			String taikhoan=json.getString("taikhoan");
+	private void getUserInfo(JSONObject json) {
+		try {
+			String fullname = json.getString("fullname");
+			String email = json.getString("email");
+			String phone = json.getString("phone");
+			String address = json.getString("address");
+			String taikhoan = json.getString("taikhoan");
 			User user = new User();
 			user.setFullname(fullname);
 			user.setEmail(email);
@@ -184,12 +183,28 @@ public class UserTask extends AsyncTask<User, String, JSONObject>{
 			user.setAddress(address);
 			user.setTaikhoan(taikhoan);
 			context.setUserInfo(user);
-		}
-		catch(JSONException e){
-			
+		} catch (JSONException e) {
+
 		}
 	}
 	
-	private void checkFollow(JSONObject json){}
-	private void addFollow(JSONObject json){}
+	private void viewInfo(JSONObject json){
+		try {
+			String fullname = json.getString("fullname");
+			String email = json.getString("email");
+			String phone = json.getString("phone");
+			String address = json.getString("address");
+			String taikhoan = json.getString("taikhoan");
+			User user = new User();
+			user.setFullname(fullname);
+			user.setEmail(email);
+			user.setPhone(phone);
+			user.setAddress(address);
+			user.setTaikhoan(taikhoan);
+			context.viewInfo(user);
+		} catch (JSONException e) {
+
+		}
+	}
+
 }

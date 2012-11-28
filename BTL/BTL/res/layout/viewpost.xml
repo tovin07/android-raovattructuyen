@@ -18,7 +18,7 @@
             android:text="Tên người "
             android:textColor="#040404"
             android:textStyle="bold" />
-
+
         <Button
             android:id="@+id/vp_follow"
             android:layout_width="wrap_content"
@@ -26,7 +26,6 @@
             android:layout_gravity="center_vertical"
             android:text="Theo dõi"
             android:textSize="10dip" />
-
     </LinearLayout>
 
     <LinearLayout

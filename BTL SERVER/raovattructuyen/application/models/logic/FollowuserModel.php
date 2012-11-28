@@ -77,10 +77,6 @@ class FollowuserModel {
         return ( array("results" => $list, "totalRows" => $totalRows) );
     }
 
-    /*
-     * 
-     *
-
     public static function insert(Followuser $followuser) {
         $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         $sql = "INSERT INTO tbl_followuser(userfollow_id, userfollowed_id) 
@@ -92,9 +88,6 @@ class FollowuserModel {
         $conn = null;
         return $result;
     }
-    /*
-     * 
-     */
 
     public static function delete($userfollow_id, $userfollowed_id) {
         $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));

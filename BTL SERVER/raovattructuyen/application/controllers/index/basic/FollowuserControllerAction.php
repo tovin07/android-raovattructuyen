@@ -20,14 +20,17 @@ class FollowuserControllerAction {
         $followuser->setUserfollow_id($userfollow_id);
         $followuser->setUserfollowed_id($userfollowed_id);
         $result= FollowuserModel::insert($followuser);
-        $respone['result']= $result;
+        if ($result == "true")
+            $respone['result']= 1;
+        else 
+            $respone['result']= 0;
         echo (json_encode($respone));
     }
     public function checkfollow(){
         $respone =array();
         $userfollow_id= $_GET['userfollow'];
         $userfollowed_id= $_GET['userfollowed'];
-        $result= FollowuserModel::delete($userfollow_id, $userfollowed_id);
+        $result= FollowuserModel::checkFollow($userfollow_id, $userfollowed_id);
         $respone['result']= $result;
         echo (json_encode($respone));
     }
@@ -35,8 +38,11 @@ class FollowuserControllerAction {
         $respone =array();
         $userfollow_id= $_GET['userfollow'];
         $userfollowed_id= $_GET['userfollowed'];
-        $result= FollowuserModel::checkFollow($userfollow_id, $userfollowed_id);
-        $respone['result']= $result;
+        $result= FollowuserModel::delete($userfollow_id, $userfollowed_id);
+        if ($result == "true")
+            $respone['result']= 1;
+        else 
+            $respone['result']= 0;
         echo (json_encode($respone));
     }
     public function getUserFollowed(){

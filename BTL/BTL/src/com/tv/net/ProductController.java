@@ -50,6 +50,14 @@ public class ProductController {
 		return handler.getJsonFromUrlByGet(url, params);
 	}
 	
+	public JSONObject morePage(int page,int id){
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("page",page+"" ));
+		params.add(new BasicNameValuePair("user_id",id+"" ));
+		String url=ServerConfig.MORE_PAGE;
+		return handler.getJsonFromUrlByGet(url, params);
+	}
+	
 	public JSONObject getMyPage(Product product){
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("user_id",product.getUid()+""));

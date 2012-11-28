@@ -8,4 +8,5 @@ public interface UserListener {
 	public void loginComplete();
 	public void setUserInfo(User user);
 	public void getAvatarInfo();
+	public void viewInfo(User user);
 }

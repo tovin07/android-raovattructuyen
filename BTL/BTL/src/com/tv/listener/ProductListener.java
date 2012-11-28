@@ -7,4 +7,5 @@ import com.tv.model.Product;
 public interface ProductListener {
 	public void saveFinish();
 	public void reload(List<Product> params);
+	public void loadMore(List<Product> params);
 }

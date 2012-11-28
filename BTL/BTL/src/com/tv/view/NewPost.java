@@ -162,6 +162,11 @@ public class NewPost extends Activity implements ProductListener {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void loadMore(List<Product> params) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

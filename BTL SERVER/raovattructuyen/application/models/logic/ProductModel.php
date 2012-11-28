@@ -58,6 +58,18 @@ class ProductModel {
         $conn = null;
         return $results;
     }
+    
+    public static function getProductIdMaxById($id) {
+        $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $sql = "SELECT max(product_id) FROM tbl_product where user_id=?";
+        $st = $conn->prepare($sql);
+        $st->bindValue(1, $id);
+        $st->execute();
+        $row = $st->fetch();
+        $results = $row['max(product_id)'];
+        $conn = null;
+        return $results;
+    }
 
     /*
      * 

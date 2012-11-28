@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,16 +19,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tv.btl.BaseApplication;
 import com.tv.btl.R;
 import com.tv.listener.CommentListener;
+import com.tv.listener.FollowListener;
 import com.tv.model.Comment;
+import com.tv.model.User;
 import com.tv.net.DownloadImage;
 import com.tv.task.CommentTask;
+import com.tv.task.FollowTask;
+import com.tv.task.UserTask;
+import com.tv.view.dialog.Contact;
 import com.tv.view.dialog.PhoneDialog;
 
-public class ViewPost extends Activity implements CommentListener {
+public class ViewPost extends Activity implements CommentListener, FollowListener {
 	private int user_id;
 	private int product_id;
 	private String username = "";
@@ -36,22 +43,26 @@ public class ViewPost extends Activity implements CommentListener {
 	private String description = "";
 	private String imageurl = "";
 	private PhoneDialog dialog;
+	private int followaction = 0;
 
 	TextView pname, uname, date, des, url;
 	ListView list;
 	ImageView image;
 	EditText comment;
-	Button addfriend;
+	Button follow;
+	User u1 = new User();
+	User u2 = new User();
 
 	List<Comment> model = new ArrayList<Comment>();
 	CommentArray adapter = null;
 	Comment cm = null;
+	Contact contact;
 
 	public void onCreate(Bundle saveBundle) {
 		super.onCreate(saveBundle);
 		setContentView(R.layout.viewpost);
 		Intent i = getIntent();
-
+		
 		pname = (TextView) findViewById(R.id.vp_pname);
 		uname = (TextView) findViewById(R.id.vp_username);
 		date = (TextView) findViewById(R.id.vp_date);
@@ -59,7 +70,14 @@ public class ViewPost extends Activity implements CommentListener {
 		image = (ImageView) findViewById(R.id.vp_image);
 		comment = (EditText) findViewById(R.id.vp_addcm);
 		list = (ListView) findViewById(R.id.vp_listcm);
-		addfriend = (Button) findViewById(R.id.vp_follow);
+		follow = (Button) findViewById(R.id.vp_follow);
+
+		follow.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				followAcion();
+			}
+		});
 		
 		user_id = i.getIntExtra(Frag_feed.UID, 0);
 		product_id = i.getIntExtra(Frag_feed.PID, 0);
@@ -68,21 +86,34 @@ public class ViewPost extends Activity implements CommentListener {
 		publicdate = i.getStringExtra(Frag_feed.PUBLICDATE);
 		description = i.getStringExtra(Frag_feed.DESCRIPTION);
 		imageurl = i.getStringExtra(Frag_feed.URL);
-		System.out.println("pid : " + product_id);
-		
+		u1.setId(((BaseApplication) getApplication()).getID());
+		u2.setId(user_id);
+
 		pname.setText(productname);
 		uname.setText(username);
 		date.setText(publicdate);
 		des.setText(description);
 
-		if (user_id==((BaseApplication)getApplication()).getID())
-			addfriend.setVisibility(android.view.View.INVISIBLE);
-		
+		if (user_id == u1.getId())
+			follow.setVisibility(android.view.View.INVISIBLE);
+		else followAcion();
+		contact=new Contact(user_id);
 		DownloadImage download = new DownloadImage(image);
 		download.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, imageurl);
-		
+
 		adapter = new CommentArray();
 		init();
+		uname.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				visibleContact();
+				
+			}
+		});
+	}
+	
+	public void visibleContact(){
+		contact.show(getFragmentManager(), "register dialog");
 	}
 
 	public void init() {
@@ -109,6 +140,7 @@ public class ViewPost extends Activity implements CommentListener {
 		adapter.add(c);
 		adapter.notifyDataSetChanged();
 		t.execute(c);
+		comment.setText("");
 	}
 
 	class CommentArray extends ArrayAdapter<Comment> {
@@ -129,8 +161,7 @@ public class ViewPost extends Activity implements CommentListener {
 				h = new CommentHolder(v);
 				v.setTag(h);
 				cm = model.get(position);
-			}
-			else {
+			} else {
 				h = (CommentHolder) v.getTag();
 
 			}
@@ -149,12 +180,12 @@ public class ViewPost extends Activity implements CommentListener {
 			content = (TextView) v.findViewById(R.id.rowcm_content);
 
 		}
-		
-		public void populateComment(Comment cm){
+
+		public void populateComment(Comment cm) {
 			date.setText(cm.getComment_date());
 			uname.setText(cm.getUser_name());
 			content.setText(cm.getComment_content());
-			
+
 		}
 
 	}
@@ -172,9 +203,85 @@ public class ViewPost extends Activity implements CommentListener {
 		System.out.println("comment thanh cong!");
 
 	}
-	
-	public void addFriend(){
-		
+
+	public void alertMessage(String message) {
 	}
 
+	public void registerSubmit(User user) {
+	}
+
+	public void loginComplete() {
+	}
+
+	public void setUserInfo(User user) {
+	}
+
+	public void getAvatarInfo() {
+	}
+
+	public void checkFollow(int result) {
+		switch (result) {
+		case 0:
+			System.out.println("chua theo doi");
+			followaction = 1;
+			follow.setText("Theo dõi");
+			break;
+		case 1:
+			System.out.println("da theo doi");
+			followaction = 2;
+			follow.setText("Bỏ theo dõi");
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void addFollow(int result) {
+		switch (result) {
+		case 0:
+			break;
+		case 1:
+			followaction = 2;
+			follow.setText("Bỏ theo dõi");
+			Toast.makeText(ViewPost.this, "Đã chọn theo dõi", Toast.LENGTH_SHORT).show();
+		default:
+			break;
+		}
+	}
+
+	public void unFollow(int result) {
+		switch (result) {
+		case 0:
+			break;
+		case 1:
+			followaction = 1;
+			follow.setText("Theo dõi");
+			Toast.makeText(ViewPost.this, "Đã bỏ theo dõi", Toast.LENGTH_SHORT).show();
+		default:
+			break;
+		}
+	}
+
+	public void followAcion() {
+		FollowTask task = null;
+		switch (followaction) {
+		case 0:
+			task = new FollowTask(FollowTask.CHECKFOLLOW, this);
+			task.execute(u1, u2);
+			break;
+		case 1:
+			task = new FollowTask(FollowTask.ADDFOLLOW, this);
+			task.execute(u1, u2);
+			break;
+		case 2:
+			task = new FollowTask(FollowTask.UNFOLLOW, this);
+			task.execute(u1, u2);
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void reLoadFollow(List<User> params) {}
+	public void loadMoreFollow(List<User> params) {}
 }

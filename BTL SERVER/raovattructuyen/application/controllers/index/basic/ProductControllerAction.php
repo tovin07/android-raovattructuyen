@@ -122,6 +122,8 @@ class ProductControllerAction {
     public function getPage(){
         $respone =array();
         $uid=$_GET['user_id'];
+        $maxid= ProductModel::getProductIdMaxById($uid);
+        $respone['maxid']=$maxid;
         $result=  ProductModel::getAllProductById($uid);
         $respone['product']=array();
         foreach ($result['results'] as $key){
@@ -135,9 +137,13 @@ class ProductControllerAction {
         $respone =array();
         $_page=$_GET['page'];
         $user_id=$_GET['user_id'];
-        $data=ProductModel::getAllProductById($user_id,$page, 10);
-        $respone['products']= $data['results'];
-        $totalPage= $data['totalRows']/10;
+        $result=  ProductModel::getAllProductById($uid);
+        $respone['product']=array();
+        foreach ($result['results'] as $key){
+            $respone['product'][]=$key;
+        }
+     
+        $totalPage= $results['totalRows']/10;
         if ($_page >= $totalPage)
             $_page= 0;
         $respone['page']= $_page;
@@ -147,10 +153,17 @@ class ProductControllerAction {
     public function loadMoreFeed(){
         $respone =array();
         $_page=$_GET['page'];
-        $data=ProductModel::getAllProduct($_page, 10);
-        $respone['products']= $data['results'];
-        $totalPage= $data['totalRows']/10;
-        if ($_page >= $totalPage)
+        $result=ProductModel::getAllProduct($_page, 10);
+        $respone['product']=array();
+        $respopne['user_name']=array();
+        foreach ($result['results'] as $key){
+            $uid =$key['user_id'];
+            $user=  UserModel::getById($uid); 
+            $respone['user_name'][]=$user['user_username'];
+            $respone['product'][]=$key;
+        }
+        $totalPage= $result['totalRows']/10;
+        if ($_page >=$totalPage)
             $_page= 0;
         $respone['page']= $_page;
         echo (json_encode($respone));

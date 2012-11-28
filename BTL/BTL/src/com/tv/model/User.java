@@ -1,8 +1,10 @@
 package com.tv.model;
 
+import android.graphics.Bitmap;
+
 public class User {
 	private int id;
-	private String uername;
+	private String username;
 	private String password;
 	private String email;
 	private String fullname;
@@ -12,18 +14,32 @@ public class User {
 	private String linkava;
 	private int danhvong;
 	private int trangthai;
+	private Bitmap avatar;
+	private boolean init=false;
 	
+	public Bitmap getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(Bitmap avatar) {
+		this.avatar = avatar;
+	}
+	public boolean isInit() {
+		return init;
+	}
+	public void setInit(boolean init) {
+		this.init = init;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUername() {
-		return uername;
+	public String getUsername() {
+		return username;
 	}
 	public void setUername(String uername) {
-		this.uername = uername;
+		this.username = uername;
 	}
 	public String getPassword() {
 		return password;
@@ -55,8 +71,9 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getTaikhoan() {
-		return taikhoan;
+	
+	public String getTaikhoan(){
+		return this.taikhoan;
 	}
 	public void setTaikhoan(String taikhoan) {
 		this.taikhoan = taikhoan;
