@@ -1,7 +1,7 @@
 <?php
 
 /*
- * @author QuangTuan
+ *
  */
 require APPLICATION_PATH . '/controllers/admin/basic/ProductControllerAction.php';
 $productControllerAction= new ProductControllerAction();

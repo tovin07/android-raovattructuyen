@@ -6,12 +6,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="355dp" >
+        android:layout_height="365dp" >
 
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="355dp" />
+            android:layout_height="365dp" />
     </LinearLayout>
 
     <Button
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Xêm thêm" 
+        android:text="Xem thêm" 
         android:onClick="viewMore"/>
 
 </LinearLayout>

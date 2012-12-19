@@ -16,6 +16,8 @@ public class Product {
 	private String date;
 	private String visitcount;
 	private Bitmap avatar;
+	private double lon;
+	private double lat;
 	private boolean init=false;
 	
 	public int getPid() {
@@ -93,6 +95,23 @@ public class Product {
 	
 	public void setInit(boolean b){
 		init=b;
+	}
+	
+	public void setLon(double lon){
+		this.lon=lon;
+	}
+	
+	public void setLat(double lat){
+		this.lat=lat;
+	}
+	
+	public double getLon(){
+		return this.lon;
+		
+	}
+	
+	public double getLat(){
+		return this.lat;
 	}
 
 }

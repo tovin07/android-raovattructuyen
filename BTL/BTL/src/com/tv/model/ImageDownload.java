@@ -1,4 +1,4 @@
-package com.tv.downloadimage;
+package com.tv.model;
 
 import android.graphics.Bitmap;
 

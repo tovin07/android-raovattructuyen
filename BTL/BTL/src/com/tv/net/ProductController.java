@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 
 import com.tv.btl.BaseApplication;
+import com.tv.model.PairValue;
 import com.tv.model.Product;
 import com.tv.model.User;
 
@@ -27,9 +28,13 @@ public class ProductController {
 		PairValue pname = new PairValue("product_name", product.getPname());
 		PairValue pDes=new PairValue("product_description", product.getDes());
 		PairValue pUid = new PairValue("user_id", product.getUid()+"");
+		PairValue pLon = new PairValue("post_lon", product.getLon()+"");
+		PairValue pLat = new PairValue("post_lat", product.getLat()+"");
 		params.add(pname);
 		params.add(pDes);
 		params.add(pUid);
+		params.add(pLon);
+		params.add(pLat);
 		
 		String path=product.getPathImage();
 		System.out.println("path la" +path);

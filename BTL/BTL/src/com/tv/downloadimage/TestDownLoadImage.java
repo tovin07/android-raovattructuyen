@@ -4,6 +4,7 @@ package com.tv.downloadimage;
 import java.util.ArrayList;
 
 import com.tv.btl.R;
+import com.tv.model.ImageDownload;
 import com.tv.net.JsonHandler;
 
 import android.app.Activity;

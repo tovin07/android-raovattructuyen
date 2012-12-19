@@ -138,12 +138,16 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 				pr.setDes(s.getString("product_description"));
 				pr.setPid(Integer.parseInt(s.getString("product_id")));
 				pr.setUid(Integer.parseInt(s.getString("user_id")));
+				pr.setLon(Double.parseDouble(s.getString("post_lon")));
+				pr.setLat(Double.parseDouble(s.getString("post_lat")));
+				System.out.println("lon"+pr.getLon());
 				String url = "http://10.0.2.2:85/raovattructuyen/"
 						+ s.getString("product_avatar");
 				pr.setUrl(url);
 				String name = username.getString(i);
 				pr.setUname(name);
 				productList.add(pr);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -161,9 +165,8 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 	public void MyPage(JSONObject json) {
 		List<Product> productList = new ArrayList<Product>();
 		int maxPage = 0;
-		System.out.println("zo day");
 		try {
-			
+			//
 			maxPage = Integer.parseInt(json.getString("maxid"));
 			JSONArray product = json.getJSONArray("product");
 			for (int i = 0; i < product.length(); i++) {
@@ -178,6 +181,8 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 				String url = "http://10.0.2.2:85/raovattructuyen/"
 						+ s.getString("product_avatar");
 				pr.setUrl(url);
+				pr.setLon(Double.parseDouble(s.getString("post_lon")));
+				pr.setLat(Double.parseDouble(s.getString("post_lat")));
 				productList.add(pr);
 			}
 		} catch (Exception e) {
@@ -231,6 +236,8 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 				pr.setUid(Integer.parseInt(s.getString("user_id")));
 				String url = "http://10.0.2.2:85/raovattructuyen/"
 						+ s.getString("product_avatar");
+				pr.setLon(Double.parseDouble(s.getString("post_lon")));
+				pr.setLat(Double.parseDouble(s.getString("post_lat")));
 				pr.setUrl(url);
 				productList.add(pr);
 			}
@@ -261,6 +268,8 @@ public class ProductTask extends AsyncTask<Product, String, JSONObject> {
 				pr.setUid(Integer.parseInt(s.getString("user_id")));
 				String url = "http://10.0.2.2:85/raovattructuyen/"
 						+ s.getString("product_avatar");
+				pr.setLon(Double.parseDouble(s.getString("post_lon")));
+				pr.setLat(Double.parseDouble(s.getString("post_lat")));
 				pr.setUrl(url);
 				productList.add(pr);
 			}

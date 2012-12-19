@@ -1,4 +1,4 @@
-package com.tv.net;
+package com.tv.model;
 
 public class PairValue {
 	private String name;

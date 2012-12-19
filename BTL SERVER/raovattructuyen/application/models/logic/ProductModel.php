@@ -143,7 +143,7 @@ class ProductModel {
     public static function insert(Product $product) {
         try {
             $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $sql = "INSERT INTO tbl_product(product_id, product_name, product_avatar, product_description, user_id, post_publicationDate, post_visitCount) VALUES (?, ?, ?, ?, ?, FROM_UNIXTIME(?), ?)";
+            $sql = "INSERT INTO tbl_product(product_id, product_name, product_avatar, product_description, user_id, post_publicationDate, post_visitCount, post_lon, post_lat) VALUES (?, ?, ?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)";
 
             $st = $conn->prepare($sql);
             $st->bindValue(1, $product->getProduct_id());
@@ -153,6 +153,8 @@ class ProductModel {
             $st->bindValue(5, $product->getUser_id());
             $st->bindValue(6, $product->getPost_publicationDate());
             $st->bindValue(7, 0);
+            $st->bindValue(8, $product->getPost_lon());
+            $st->bindValue(9, $product->getPost_lat());
 
             $result = $st->execute();
             $conn = null;

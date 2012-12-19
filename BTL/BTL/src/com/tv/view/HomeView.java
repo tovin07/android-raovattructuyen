@@ -69,18 +69,16 @@ public class HomeView extends Activity {
 		int c = item.getItemId();
 		switch (c){
 		case android.R.id.home: 
-			Toast.makeText(this, "test thoi", Toast.LENGTH_SHORT).show();
+		//	Toast.makeText(this, "test thoi", Toast.LENGTH_SHORT).show();
 			Intent y = new Intent(this, NewPost.class);
 			startActivity(y);
 			return true;
 		case R.id.home_option_account :
-			Toast.makeText(this, "aaa", Toast.LENGTH_SHORT).show();
 			Intent i= new Intent(this, Account.class);
 			startActivity(i);
 			return true;
 		case R.id.home_option_refresh:
 			if(globalFragment instanceof Frag_feed){
-				System.out.println("aaa");
 				((Frag_feed) globalFragment).init();
 			}
 			else if(globalFragment instanceof Frag_mypage)

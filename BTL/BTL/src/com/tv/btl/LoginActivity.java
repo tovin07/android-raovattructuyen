@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.tv.btl.R;
 import com.tv.listener.UserListener;
+import com.tv.map.GoogleMap;
 import com.tv.model.User;
 import com.tv.net.UserController;
 import com.tv.task.UserTask;
@@ -92,5 +93,10 @@ public class LoginActivity extends Activity implements UserListener {
 	public void viewInfo(User user) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void testMap(View view){
+		Intent t = new Intent(this,GoogleMap.class);
+		startActivity(t);
 	}
 }

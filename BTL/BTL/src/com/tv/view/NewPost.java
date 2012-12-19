@@ -12,11 +12,15 @@ import java.util.List;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Gravity;
@@ -26,12 +30,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.maps.GeoPoint;
 import com.tv.btl.BaseApplication;
 import com.tv.btl.R;
 import com.tv.btl.Ulti;
 import com.tv.camera.CameraTask;
 import com.tv.camera.PhotoHandler;
 import com.tv.listener.ProductListener;
+
 import com.tv.model.Product;
 import com.tv.task.ProductTask;
 
@@ -66,17 +72,23 @@ public class NewPost extends Activity implements ProductListener {
 			int uid=((BaseApplication)getApplication()).getID();
 			String pr_name =pname.getText().toString();
 			String pr_Des= des.getText().toString();
-			System.out.println("dess"  +pr_Des);
 			pr.setUid(uid);
 			pr.setPname(pr_name);
 			pr.setDes(pr_Des);
 			pr.setPathImage(uri);
+			LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE); 
+			 lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
+				        0, new GeoUpdateHandler());
+			Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			double longitude = location.getLongitude();
+			double latitude =  location.getLatitude();
+			pr.setLat(latitude);
+			pr.setLon(longitude);
 			ProductTask t= new ProductTask(ProductTask.NEWPOST, this);
 			t.execute(pr);
 		}
 		else
 		{
-			System.out.println("aâqqƯ");
 			Toast t= Toast.makeText(this, "Kiểm tra lại các trường", Toast.LENGTH_SHORT);
 			t.setGravity(Gravity.CENTER, 0, 0);
 			t.show();
@@ -167,6 +179,30 @@ public class NewPost extends Activity implements ProductListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public class GeoUpdateHandler implements LocationListener {
+
+		   
+	    public void onLocationChanged(Location location) {
+	      int lat = (int) (location.getLatitude() * 1E6);
+	      int lng = (int) (location.getLongitude() * 1E6);
+	      GeoPoint point = new GeoPoint(lat, lng);
+	     
+
+	    }
+
+	  
+	    public void onProviderDisabled(String provider) {
+	    }
+
+	   
+	    public void onProviderEnabled(String provider) {
+	    }
+
+	    
+	    public void onStatusChanged(String provider, int status, Bundle extras) {
+	    }
+	  }
 	
 	
 }

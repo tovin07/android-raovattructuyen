@@ -92,6 +92,8 @@ public class Frag_mypage extends ListFragment implements ProductListener{
 		i.putExtra(Frag_feed.PUBLICDATE, product.getDate());
 		i.putExtra(Frag_feed.URL, product.getUrl());
 		i.putExtra(Frag_feed.DESCRIPTION, product.getDes());
+		i.putExtra(Frag_feed.LON, product.getLon());
+		i.putExtra(Frag_feed.LAT, product.getLat());
 		startActivity(i);
 	}
 

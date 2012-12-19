@@ -35,6 +35,8 @@ public class Frag_feed extends ListFragment implements ProductListener {
 	public static final String PUBLICDATE = "public_date";
 	public static final String URL = "image_url";
 	public static final String DESCRIPTION = "description";
+	public static final String LON="lon";
+	public static final String LAT="lat";
 
 	View FragmentView;
 	List<Product> model = new ArrayList<Product>();
@@ -159,6 +161,8 @@ public class Frag_feed extends ListFragment implements ProductListener {
 		i.putExtra(PUBLICDATE, product.getDate());
 		i.putExtra(URL, product.getUrl());
 		i.putExtra(DESCRIPTION, product.getDes());
+		i.putExtra(LON, product.getLon());
+		i.putExtra(LAT, product.getLat());
 		startActivity(i);
 
 	}

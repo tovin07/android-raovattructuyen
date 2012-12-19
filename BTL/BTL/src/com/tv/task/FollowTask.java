@@ -173,6 +173,5 @@ public class FollowTask extends AsyncTask<User, String, JSONObject> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		
 	}
 }

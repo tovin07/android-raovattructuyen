@@ -43,6 +43,8 @@ public class ViewPost extends Activity implements CommentListener, FollowListene
 	private String description = "";
 	private String imageurl = "";
 	private PhoneDialog dialog;
+	private double lon;
+	private double lat;
 	private int followaction = 0;
 
 	TextView pname, uname, date, des, url;
@@ -86,6 +88,8 @@ public class ViewPost extends Activity implements CommentListener, FollowListene
 		publicdate = i.getStringExtra(Frag_feed.PUBLICDATE);
 		description = i.getStringExtra(Frag_feed.DESCRIPTION);
 		imageurl = i.getStringExtra(Frag_feed.URL);
+		lon=i.getDoubleExtra(Frag_feed.LON, 0);
+		lat=i.getDoubleExtra(Frag_feed.LAT, 0);
 		u1.setId(((BaseApplication) getApplication()).getID());
 		u2.setId(user_id);
 
@@ -98,6 +102,7 @@ public class ViewPost extends Activity implements CommentListener, FollowListene
 			follow.setVisibility(android.view.View.INVISIBLE);
 		else followAcion();
 		contact=new Contact(user_id);
+		contact.setLongLat(lon, lat,this);
 		DownloadImage download = new DownloadImage(image);
 		download.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, imageurl);
 
@@ -222,12 +227,10 @@ public class ViewPost extends Activity implements CommentListener, FollowListene
 	public void checkFollow(int result) {
 		switch (result) {
 		case 0:
-			System.out.println("chua theo doi");
 			followaction = 1;
 			follow.setText("Theo dõi");
 			break;
 		case 1:
-			System.out.println("da theo doi");
 			followaction = 2;
 			follow.setText("Bỏ theo dõi");
 			break;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
+import com.tv.model.PairValue;
 import com.tv.net.JsonHandler;
-import com.tv.net.PairValue;
 
 import android.os.AsyncTask;
 

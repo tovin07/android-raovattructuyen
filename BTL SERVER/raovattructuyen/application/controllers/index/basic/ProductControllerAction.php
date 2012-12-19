@@ -105,7 +105,7 @@ class ProductControllerAction {
     public function getFeed(){
         $respone =array();
         $maxid=  ProductModel::getProductIdMax();
-        $respone['maxid']=$maxid;
+        $respone['maxid']=$maxid!=0?$maxid:0;
         $result=  ProductModel::getAllProduct();
         $respone['product']=array();
         $respopne['user_name']=array();

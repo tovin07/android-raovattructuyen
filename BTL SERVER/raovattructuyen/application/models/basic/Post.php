@@ -11,7 +11,9 @@ class Post extends Model {
     private $post_visiCount= 0;
     private $product_id= null;
     private $post_uid=null;
-    private $properties = array('post_id', 'post_publicationDate', 'post_visiCount', 'product_id','post_uid');
+    private $post_long=null;
+    private $post_lat=null;
+    private $properties = array('post_id', 'post_publicationDate', 'post_visiCount', 'product_id','post_uid', 'post_long', 'post_lat');
 
     public function __construct($data= array()) {
         foreach ($this->properties as $i) {
@@ -68,8 +70,24 @@ class Post extends Model {
     public function getPost_uid(){
         return $this->post_uid;
     }
+    public function getPost_long() {
+        return $this->post_long;
+    }
+
+    public function setPost_long($post_long) {
+        $this->post_long = $post_long;
+    }
+
+    public function getPost_lat() {
+        return $this->post_lat;
+    }
+
+    public function setPost_lat($post_lat) {
+        $this->post_lat = $post_lat;
+    }
 
 
+    
 }
 
 ?>

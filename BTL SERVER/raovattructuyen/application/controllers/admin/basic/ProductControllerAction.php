@@ -8,7 +8,7 @@
 /**
  * Description of ProductControllerAction
  *
- * @author Quang Tuan
+ * 
  */
 require APPLICATION_PATH . '/models/logic/ProductModel.php';
 require APPLICATION_PATH . '/models/logic/SubproductModel.php';

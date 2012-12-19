@@ -13,7 +13,9 @@ class Product extends Model {
     private $user_id= null;
     private $post_publicationDate=null;
     private $post_visiCount=0;
-    private $properties = array('product_id', 'product_name', 'product_avatar', 'product_description', 'user_id','post_publicationDate','post_visiCount');
+    private $post_lon=null;
+    private $post_lat=null;
+    private $properties = array('product_id', 'product_name', 'product_avatar', 'product_description', 'user_id','post_publicationDate','post_visiCount', 'post_lon', 'post_lat');
 
     public function __construct($data= array()) {
         foreach ($this->properties as $i) {
@@ -84,6 +86,24 @@ class Product extends Model {
     public function setPost_visiCount($post_visiCount) {
         $this->post_visiCount = $post_visiCount;
     }
+    public function getPost_lon() {
+        return $this->post_lon;
+    }
+
+    public function setPost_lon($post_lon) {
+        $this->post_lon = $post_lon;
+    }
+
+    
+    public function getPost_lat() {
+        return $this->post_lat;
+    }
+
+    public function setPost_lat($post_lat) {
+        $this->post_lat = $post_lat;
+    }
+
+
 
 }
 
